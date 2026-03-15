@@ -16,7 +16,7 @@ function Row({ title, fetchUrl, endpointKey, isLargeRow }) {
   const handleClick = async (movie) => {
     if (trailerUrl) { setTrailerUrl(''); return }
     const mediaType = movie.first_air_date ? 'tv' : 'movie'
-    const { data } = await tmdbClient.get(`/${mediaType}/${movie.id}/videos`)
+    const { data } = await tmdbClient.get(`/api/trailer/${mediaType}/${movie.id}`)
     const trailer = data.results.find(v => v.type === 'Trailer' && v.site === 'YouTube')
     if (trailer) setTrailerUrl(trailer.key)
   }

@@ -1,32 +1,28 @@
 import axios from 'axios'
 
+
+
+const BASE_URL = import.meta.env.PROD
+    ? 'https://netflix-clone-app-backend.onrender.com'  // production — we'll fill this later
+    : 'http://localhost:5000'
+
+
 export const tmdbClient = axios.create({
-    baseURL: 'https://api.themoviedb.org/3',
-    params: {
-        api_key: import.meta.env.VITE_TMDB_API_KEY,
-        language: 'en-US',
-    },
+    baseURL: BASE_URL,
 })
 
 export const IMAGE_BASE = 'https://image.tmdb.org/t/p/original'
 
 export const ENDPOINTS = {
-    fetchNetflixOriginals: '/discover/tv',
-    fetchTrending: '/trending/all/week',
-    fetchTopRated: '/movie/top_rated',
-    fetchActionMovies: '/discover/movie',
-    fetchComedyMovies: '/discover/movie',
-    fetchHorrorMovies: '/discover/movie',
-    fetchRomanceMovies: '/discover/movie',
-    fetchDocumentaries: '/discover/movie',
+    fetchNetflixOriginals: '/api/netflix-originals',
+    fetchTrending: '/api/trending',
+    fetchTopRated: '/api/top-rated',
+    fetchActionMovies: '/api/action',
+    fetchComedyMovies: '/api/comedy',
+    fetchHorrorMovies: '/api/horror',
+    fetchRomanceMovies: '/api/romance',
+    fetchDocumentaries: '/api/documentaries',
 }
 
 // Extra params per endpoint (merged in by useMovies hook)
-export const ENDPOINT_PARAMS = {
-    fetchNetflixOriginals: { with_network: 213 },
-    fetchActionMovies: { with_genres: 28 },
-    fetchComedyMovies: { with_genres: 35 },
-    fetchHorrorMovies: { with_genres: 27 },
-    fetchRomanceMovies: { with_genres: 10749 },
-    fetchDocumentaries: { with_genres: 99 },
-}
+export const ENDPOINT_PARAMS = {}
